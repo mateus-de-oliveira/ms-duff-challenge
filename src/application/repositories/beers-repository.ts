@@ -4,6 +4,6 @@ export abstract class BeerRepository {
   abstract listAll(): Promise<Beer | null>;
   abstract listById(beerId: string): Promise<Beer | null>;
   abstract create(beer: Beer): Promise<void>;
-  abstract updated(beer: Beer): Promise<void>;
+  abstract update(beer: Beer): Promise<Beer>;
   abstract delete(beer: Beer): Promise<void>;
 }
