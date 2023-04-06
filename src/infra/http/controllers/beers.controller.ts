@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpStatus,
   Param,
   Patch,
   Post,
@@ -11,10 +12,11 @@ import {
 import { CreateBeerBody } from '../dtos/create-beer-body';
 import { CreateBeer } from '@application/useCases/beers/create-beer';
 import { BeerViewModels } from '../view-models/beers-view-models';
+import { DeleteBeer } from '@application/useCases/beers/delete-beer';
 
 @Controller('beers')
 export class BeersController {
-  constructor(private createBeer: CreateBeer) {}
+  constructor(private createBeer: CreateBeer, private deleteBeer: DeleteBeer) {}
 
   @Get(':beerId')
   async listById(@Param('beerId') beerId: string) {
@@ -46,6 +48,6 @@ export class BeersController {
 
   @Delete(':beerId')
   async delete(@Param('beerId') beerId: string) {
-    console.log('chegou no controller: delete' + beerId);
+    await this.deleteBeer.execute(beerId);
   }
 }

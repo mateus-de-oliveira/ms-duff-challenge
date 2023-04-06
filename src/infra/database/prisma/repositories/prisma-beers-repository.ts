@@ -27,7 +27,11 @@ export class PrismaBeersRepository implements BeerRepository {
     throw new Error('Method not implemented.');
   }
 
-  delete(beer: Beer): Promise<void> {
-    throw new Error('Method not implemented.');
+  async delete(beerId: string): Promise<void> {
+    await this.prismaService.beer.delete({
+      where: {
+        id: beerId,
+      },
+    });
   }
 }
