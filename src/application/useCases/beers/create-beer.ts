@@ -4,8 +4,8 @@ import { Injectable } from '@nestjs/common';
 
 interface CreateBeerRequest {
   styleName: string;
-  minimumTemperature: string;
-  maximumTemperature: string;
+  minimumTemperature: number;
+  maximumTemperature: number;
   createdAt?: Date;
 }
 

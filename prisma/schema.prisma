@@ -9,9 +9,10 @@ datasource db {
 }
 
 model Beer {
-  id                 String   @id
-  styleName          String
-  minimumTemperature String
-  maximumTemperature String
-  createdAt          DateTime @default(now())
+  id                        String   @id
+  styleName                 String
+  minimumTemperature        Int
+  maximumTemperature        Int
+  roundedAverageTemperature Int
+  createdAt                 DateTime @default(now())
 }

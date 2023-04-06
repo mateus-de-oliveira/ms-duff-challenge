@@ -2,8 +2,8 @@ import { randomUUID } from 'node:crypto';
 
 export interface BeerProps {
   styleName: string;
-  minimumTemperature: string;
-  maximumTemperature: string;
+  minimumTemperature: number;
+  maximumTemperature: number;
   createdAt?: Date;
 }
 
@@ -21,7 +21,7 @@ export class Beer {
   }
 
   public get id() {
-    return this.id;
+    return this._id;
   }
 
   public set styleName(styleName: string) {
@@ -32,20 +32,28 @@ export class Beer {
     return this.props.styleName;
   }
 
-  public set minimumTemperature(minimumTemperature: string) {
+  public set minimumTemperature(minimumTemperature: number) {
     this.props.minimumTemperature = minimumTemperature;
   }
 
-  public get minimumTemperature(): string {
+  public get minimumTemperature(): number {
     return this.props.minimumTemperature;
   }
 
-  public set maximumTemperature(maximumTemperature: string) {
+  public set maximumTemperature(maximumTemperature: number) {
     this.props.maximumTemperature = maximumTemperature;
   }
 
-  public get maximumTemperature(): string {
+  public get maximumTemperature(): number {
     return this.props.maximumTemperature;
+  }
+
+  public get roundedAverageTemperature(): number {
+    const roundedAverageTemperature =
+      (this.props.minimumTemperature + this.props.maximumTemperature) / 2;
+
+    const roundedMean = Math.round(roundedAverageTemperature);
+    return roundedMean;
   }
 
   public get createdAt(): Date {

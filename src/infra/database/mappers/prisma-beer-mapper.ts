@@ -9,6 +9,7 @@ export class PrismaBeerMapper {
       styleName: beer.styleName,
       minimumTemperature: beer.minimumTemperature,
       maximumTemperature: beer.maximumTemperature,
+      roundedAverageTemperature: beer.roundedAverageTemperature,
       createdAt: beer.createdAt,
     };
   }

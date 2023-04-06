@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateBeerBodyDTO {
   @IsNotEmpty()
@@ -6,10 +6,10 @@ export class CreateBeerBodyDTO {
   styleName: string;
 
   @IsNotEmpty()
-  @IsString()
-  minimumTemperature: string;
+  @IsNumber()
+  minimumTemperature: number;
 
   @IsNotEmpty()
-  @IsString()
-  maximumTemperature: string;
+  @IsNumber()
+  maximumTemperature: number;
 }
