@@ -23,8 +23,15 @@ export class PrismaBeersRepository implements BeerRepository {
     });
   }
 
-  update(beer: Beer): Promise<Beer> {
-    throw new Error('Method not implemented.');
+  async update(beerId: string, beer: Beer): Promise<Partial<Beer>> {
+    const updateBeer = await this.prismaService.beer.update({
+      where: {
+        id: beerId,
+      },
+      data: beer,
+    });
+
+    return updateBeer;
   }
 
   async delete(beerId: string): Promise<void> {

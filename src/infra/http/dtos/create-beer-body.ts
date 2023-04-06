@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CreateBeerBody {
+export class CreateBeerBodyDTO {
   @IsNotEmpty()
   @IsString()
   styleName: string;
