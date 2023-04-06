@@ -108,3 +108,7 @@ $ npm run commit
 
 
 -   Developer - [Mateus de Oliveira](mailto:mateus.oliveira.developer@gmail.com)
+
+---
+
+Feito com ♥ by Mateus de Oliveira :wave:
