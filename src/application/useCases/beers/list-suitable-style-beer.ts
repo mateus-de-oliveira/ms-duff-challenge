@@ -2,6 +2,8 @@ import { BeerRepository } from 'src/application/repositories/beers-repository';
 import { HttpClientService } from 'src/infra/transporters/http-client/http-client.service';
 import { Injectable } from '@nestjs/common';
 import QueryString = require('qs');
+import { BeerNotFoundException } from './errors/beer-not-found';
+import { PlaylistNotFoundException } from './errors/playlist-not-found';
 
 interface SpotifyApiAuthResponse {
   access_token: string;
@@ -55,6 +57,10 @@ export class ListSuitableStyleBeer {
   public async execute(temperature: number) {
     const beer = await this.beerRepository.listSuitableStyle(temperature);
 
+    if (!beer) {
+      throw new BeerNotFoundException();
+    }
+
     const { access_token } = await this.getTokenSpotifyApi();
 
     const getPlaylistByName = await this.searchPlaylistByName(
@@ -79,6 +85,9 @@ export class ListSuitableStyleBeer {
         },
       );
 
+    if (!playlists.items[0]) {
+      throw new PlaylistNotFoundException();
+    }
     const trackUrl = playlists.items[0].tracks.href;
 
     const { items: tracks }: SpotifyApiTracksPlaylist =

@@ -19,6 +19,10 @@ export class PrismaBeersRepository implements BeerRepository {
       LIMIT 1;
     `;
 
+    if (!beer[0]) {
+      return null;
+    }
+
     return PrismaBeerMapper.toDomain(beer[0]);
   }
 
