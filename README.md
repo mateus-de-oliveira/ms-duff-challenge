@@ -60,13 +60,6 @@ $ docker-compose up -d
 
 ```
 
-## Executando a aplicação no terminal
-
-```bash
-# watch mode de desenvolvimento
-$ npm run start:dev
-```
-
 Finalizando o processo da criação dos containers:
 
 ```bash
@@ -76,6 +69,14 @@ $ npx prisma migrate dev
 # Gere o Prisma Client com o seguinte comando
 $ npx prisma generate
 ```
+
+## Executando a aplicação no terminal
+
+```bash
+# watch mode de desenvolvimento
+$ npm run start:dev
+```
+
 
 ## Testes
 
