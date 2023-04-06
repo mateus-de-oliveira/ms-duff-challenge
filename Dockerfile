@@ -20,5 +20,7 @@ FROM base as prod
 
 COPY --from=build /app/dist/ ./dist/
 
+RUN npm run prisma:generate
+
 CMD [ "node", "dist/main"]
 
