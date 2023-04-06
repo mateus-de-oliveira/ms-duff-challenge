@@ -8,6 +8,20 @@ import { PrismaBeerMapper } from '@infra/database/mappers/prisma-beer-mapper';
 export class PrismaBeersRepository implements BeerRepository {
   constructor(private prismaService: PrismaService) {}
 
+  async listSuitableStyle(temperature: number): Promise<Beer> {
+    const beer = await this.prismaService.$queryRaw<Beer[]>`SELECT *
+      FROM "Beer"
+      WHERE ABS("Beer"."roundedAverageTemperature" - ${temperature}) = (
+          SELECT MIN(ABS("Beer"."roundedAverageTemperature" - ${temperature}))
+          FROM "Beer"
+      )
+      ORDER BY "Beer"."styleName" ASC
+      LIMIT 1;
+    `;
+
+    return PrismaBeerMapper.toDomain(beer[0]);
+  }
+
   async listAll(): Promise<Beer[]> {
     const beers = await this.prismaService.beer.findMany();
 

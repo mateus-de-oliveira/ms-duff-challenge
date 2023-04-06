@@ -6,4 +6,6 @@ export abstract class BeerRepository {
   abstract create(beer: Beer): Promise<void>;
   abstract update(beerId: string, beer: Partial<Beer>): Promise<Partial<Beer>>;
   abstract delete(beerId: string): Promise<void>;
+
+  abstract listSuitableStyle(temperature: number): Promise<Beer>;
 }

@@ -15,6 +15,8 @@ import { DeleteBeer } from '@application/useCases/beers/delete-beer';
 import { UpdateBeer } from '@application/useCases/beers/update-beer';
 import { ListAllBeer } from '@application/useCases/beers/list-all-beer';
 import { ListByIdBeer } from '@application/useCases/beers/list-by-id-beer';
+import { ListSuitableStyleBeer } from '@application/useCases/beers/list-suitable-style-beer';
+import { ListSuitableStyleBodyDTO } from '../dtos/list-suitable-style-beer';
 
 @Controller('beers')
 export class BeersController {
@@ -24,6 +26,7 @@ export class BeersController {
     private updateBeer: UpdateBeer,
     private listAllBeer: ListAllBeer,
     private listByIdBeer: ListByIdBeer,
+    private listSuitableStyleBeer: ListSuitableStyleBeer,
   ) {}
 
   @Get(':beerId')
@@ -34,6 +37,11 @@ export class BeersController {
   @Get()
   async listAll() {
     return await this.listAllBeer.execute();
+  }
+
+  @Get('style/suitable')
+  async listSuitableStyle(@Body() { temperature }: ListSuitableStyleBodyDTO) {
+    return await this.listSuitableStyleBeer.execute(temperature);
   }
 
   @Post()
