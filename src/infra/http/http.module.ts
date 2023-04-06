@@ -7,9 +7,10 @@ import { UpdateBeer } from '@application/useCases/beers/update-beer';
 import { ListAllBeer } from '@application/useCases/beers/list-all-beer';
 import { ListByIdBeer } from '@application/useCases/beers/list-by-id-beer';
 import { ListSuitableStyleBeer } from '@application/useCases/beers/list-suitable-style-beer';
+import { TransportersModule } from '@infra/transporters/transporters.module';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, TransportersModule],
   controllers: [BeersController],
   providers: [
     CreateBeer,
