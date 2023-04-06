@@ -1,6 +1,7 @@
 import { Beer } from '@application/entities/beer';
 import { BeerRepository } from '@application/repositories/beers-repository';
 import { Injectable } from '@nestjs/common';
+import { BeerAlreadyExists } from './errors/dispute-already-exists';
 
 interface CreateBeerRequest {
   styleName: string;
@@ -15,6 +16,13 @@ export class CreateBeer {
 
   async execute(request: CreateBeerRequest) {
     const { styleName, minimumTemperature, maximumTemperature } = request;
+    const verifyIfAlreadyExists = await this.beerRepository.listByName(
+      styleName,
+    );
+
+    if (verifyIfAlreadyExists) {
+      throw new BeerAlreadyExists();
+    }
 
     const beer = new Beer({
       styleName,

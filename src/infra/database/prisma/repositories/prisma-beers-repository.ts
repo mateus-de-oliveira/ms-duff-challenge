@@ -35,6 +35,24 @@ export class PrismaBeersRepository implements BeerRepository {
       },
     });
 
+    if (!beer) {
+      return null;
+    }
+
+    return PrismaBeerMapper.toDomain(beer);
+  }
+
+  async listByName(beerStyleName: string): Promise<Beer> {
+    const beer = await this.prismaService.beer.findFirst({
+      where: {
+        styleName: beerStyleName,
+      },
+    });
+
+    if (!beer) {
+      return null;
+    }
+
     return PrismaBeerMapper.toDomain(beer);
   }
 
