@@ -3,6 +3,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { BeerRepository } from 'src/application/repositories/beers-repository';
 import { ListSuitableStyleBeer } from './list-suitable-style-beer';
 import { HttpClientService } from 'src/infra/transporters/http-client/http-client.service';
+import { PlaylistNotFoundException } from './errors/playlist-not-found';
+import { BeerNotFoundException } from './errors/beer-not-found';
 
 const responseListSuitableStyleBeer = {
   playlists: {
@@ -81,6 +83,46 @@ describe('List Suitable Style Beer', () => {
   });
 
   describe('execute', () => {
+    it('should a throw PlaylistNotFoundException', async () => {
+      const beer: any = {
+        id: '40bac2b3-2b1c-436f-a6e2-cd977018ed8f',
+        styleName: 'teste',
+        minimumTemperature: -2,
+        maximumTemperature: 4,
+        createdAt: new Date(),
+      };
+
+      jest
+        .spyOn(ListSuitableStyleBeer.prototype as any, 'getTokenSpotifyApi')
+        .mockResolvedValue({ access_toke: 'token' });
+
+      jest.spyOn(httpClientService, 'get').mockResolvedValue({
+        playlists: {
+          items: [],
+        },
+      });
+
+      jest.spyOn(beerRepository, 'listSuitableStyle').mockResolvedValue(beer);
+
+      await expect(sut.execute(2)).rejects.toThrow(PlaylistNotFoundException);
+    });
+
+    it('should a throw BeerNotFoundException', async () => {
+      jest
+        .spyOn(ListSuitableStyleBeer.prototype as any, 'getTokenSpotifyApi')
+        .mockResolvedValue({ access_toke: 'token' });
+
+      jest.spyOn(httpClientService, 'get').mockResolvedValue({
+        playlists: {
+          items: [],
+        },
+      });
+
+      jest.spyOn(beerRepository, 'listSuitableStyle').mockResolvedValue(null);
+
+      await expect(sut.execute(2)).rejects.toThrow(BeerNotFoundException);
+    });
+
     it('should be return response list suitable style beer and playlist', async () => {
       const beer: any = {
         id: '40bac2b3-2b1c-436f-a6e2-cd977018ed8f',
