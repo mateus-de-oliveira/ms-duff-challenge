@@ -13,6 +13,8 @@ import { CreateBeer } from '@application/useCases/beers/create-beer';
 import { BeerViewModels } from '../view-models/beers-view-models';
 import { DeleteBeer } from '@application/useCases/beers/delete-beer';
 import { UpdateBeer } from '@application/useCases/beers/update-beer';
+import { ListAllBeer } from '@application/useCases/beers/list-all-beer';
+import { ListByIdBeer } from '@application/useCases/beers/list-by-id-beer';
 
 @Controller('beers')
 export class BeersController {
@@ -20,16 +22,18 @@ export class BeersController {
     private createBeer: CreateBeer,
     private deleteBeer: DeleteBeer,
     private updateBeer: UpdateBeer,
+    private listAllBeer: ListAllBeer,
+    private listByIdBeer: ListByIdBeer,
   ) {}
 
   @Get(':beerId')
   async listById(@Param('beerId') beerId: string) {
-    console.log('chegou no controller: listById' + beerId);
+    return await this.listByIdBeer.execute(beerId);
   }
 
   @Get()
   async listAll() {
-    console.log('chegou no controller: listAll');
+    return await this.listAllBeer.execute();
   }
 
   @Post()

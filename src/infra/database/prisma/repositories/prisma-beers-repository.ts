@@ -8,11 +8,20 @@ import { PrismaBeerMapper } from '@infra/database/mappers/prisma-beer-mapper';
 export class PrismaBeersRepository implements BeerRepository {
   constructor(private prismaService: PrismaService) {}
 
-  listAll(): Promise<Beer> {
-    throw new Error('Method not implemented.');
+  async listAll(): Promise<Beer[]> {
+    const beers = await this.prismaService.beer.findMany();
+
+    return beers.map(PrismaBeerMapper.toDomain);
   }
-  listById(beerId: string): Promise<Beer> {
-    throw new Error('Method not implemented.');
+
+  async listById(beerId: string): Promise<Beer> {
+    const beer = await this.prismaService.beer.findUnique({
+      where: {
+        id: beerId,
+      },
+    });
+
+    return PrismaBeerMapper.toDomain(beer);
   }
 
   async create(beer: Beer): Promise<void> {

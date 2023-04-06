@@ -21,7 +21,7 @@ export class Beer {
   }
 
   public get id() {
-    return this._id;
+    return this.id;
   }
 
   public set styleName(styleName: string) {
