@@ -1,7 +1,7 @@
-import { Beer } from '@application/entities/beer';
-import { BeerRepository } from '@application/repositories/beers-repository';
+import { Beer } from 'src/application/entities/beer';
+import { BeerRepository } from 'src/application/repositories/beers-repository';
 import { Injectable } from '@nestjs/common';
-import { BeerAlreadyExists } from './errors/dispute-already-exists';
+import { BeerAlreadyExists } from './errors/beer-already-exists';
 
 interface CreateBeerRequest {
   styleName: string;

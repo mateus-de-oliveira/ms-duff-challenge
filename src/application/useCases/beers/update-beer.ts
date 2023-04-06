@@ -1,5 +1,4 @@
-import { Beer } from '@application/entities/beer';
-import { BeerRepository } from '@application/repositories/beers-repository';
+import { BeerRepository } from 'src/application/repositories/beers-repository';
 import { Injectable } from '@nestjs/common';
 import { BeerNotFoundException } from './errors/beer-not-found';
 

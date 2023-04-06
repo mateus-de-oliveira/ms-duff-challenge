@@ -1,13 +1,13 @@
-import { DatabaseModule } from '@infra/database/database.module';
 import { Module } from '@nestjs/common';
+import { DatabaseModule } from '../database/database.module';
+import { TransportersModule } from '../transporters/transporters.module';
 import { BeersController } from './controllers/beers.controller';
-import { CreateBeer } from '@application/useCases/beers/create-beer';
-import { DeleteBeer } from '@application/useCases/beers/delete-beer';
-import { UpdateBeer } from '@application/useCases/beers/update-beer';
-import { ListAllBeer } from '@application/useCases/beers/list-all-beer';
-import { ListByIdBeer } from '@application/useCases/beers/list-by-id-beer';
-import { ListSuitableStyleBeer } from '@application/useCases/beers/list-suitable-style-beer';
-import { TransportersModule } from '@infra/transporters/transporters.module';
+import { CreateBeer } from 'src/application/useCases/beers/create-beer';
+import { DeleteBeer } from 'src/application/useCases/beers/delete-beer';
+import { UpdateBeer } from 'src/application/useCases/beers/update-beer';
+import { ListAllBeer } from 'src/application/useCases/beers/list-all-beer';
+import { ListByIdBeer } from 'src/application/useCases/beers/list-by-id-beer';
+import { ListSuitableStyleBeer } from 'src/application/useCases/beers/list-suitable-style-beer';
 
 @Module({
   imports: [DatabaseModule, TransportersModule],

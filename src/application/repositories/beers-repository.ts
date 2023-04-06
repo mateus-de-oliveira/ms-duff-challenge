@@ -1,4 +1,4 @@
-import { Beer } from '@application/entities/beer';
+import { Beer } from 'src/application/entities/beer';
 
 export abstract class BeerRepository {
   abstract listAll(): Promise<Beer[] | null>;

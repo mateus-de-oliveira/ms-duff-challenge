@@ -1,6 +1,5 @@
 import { Beer as RawBeer } from '@prisma/client';
-
-import { Beer } from '@application/entities/beer';
+import { Beer } from 'src/application/entities/beer';
 
 export class PrismaBeerMapper {
   static toPrisma(beer: Beer) {

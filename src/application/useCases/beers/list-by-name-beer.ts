@@ -1,4 +1,4 @@
-import { BeerRepository } from '@application/repositories/beers-repository';
+import { BeerRepository } from 'src/application/repositories/beers-repository';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

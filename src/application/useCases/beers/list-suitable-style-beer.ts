@@ -1,5 +1,5 @@
-import { BeerRepository } from '@application/repositories/beers-repository';
-import { HttpClientService } from '@infra/transporters/http-client/http-client.service';
+import { BeerRepository } from 'src/application/repositories/beers-repository';
+import { HttpClientService } from 'src/infra/transporters/http-client/http-client.service';
 import { Injectable } from '@nestjs/common';
 import QueryString = require('qs');
 
@@ -52,7 +52,7 @@ export class ListSuitableStyleBeer {
     private readonly httpClientService: HttpClientService,
   ) {}
 
-  async execute(temperature: number) {
+  public async execute(temperature: number) {
     const beer = await this.beerRepository.listSuitableStyle(temperature);
 
     const { access_token } = await this.getTokenSpotifyApi();
@@ -111,7 +111,6 @@ export class ListSuitableStyleBeer {
     const API_SPOTIFY_URL_AUTH = process.env.API_SPOTIFY_URL_AUTH;
     const API_SPOTIFY_CLIENT_ID = process.env.API_SPOTIFY_CLIENT_ID;
     const API_SPOTIFY_CLIENT_SECRET = process.env.API_SPOTIFY_CLIENT_SECRET;
-    console.log(API_SPOTIFY_CLIENT_ID, API_SPOTIFY_CLIENT_SECRET);
 
     const data = QueryString.stringify({
       grant_type: 'client_credentials',
@@ -142,7 +141,6 @@ export class ListSuitableStyleBeer {
         link: item.track.external_urls.spotify,
       };
 
-      console.log(item);
       return data;
     });
 

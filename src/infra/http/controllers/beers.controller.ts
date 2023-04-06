@@ -9,14 +9,14 @@ import {
 } from '@nestjs/common';
 
 import { CreateBeerBodyDTO } from '../dtos/create-beer-body';
-import { CreateBeer } from '@application/useCases/beers/create-beer';
-import { BeerViewModels } from '../view-models/beers-view-models';
-import { DeleteBeer } from '@application/useCases/beers/delete-beer';
-import { UpdateBeer } from '@application/useCases/beers/update-beer';
-import { ListAllBeer } from '@application/useCases/beers/list-all-beer';
-import { ListByIdBeer } from '@application/useCases/beers/list-by-id-beer';
-import { ListSuitableStyleBeer } from '@application/useCases/beers/list-suitable-style-beer';
+import { CreateBeer } from 'src/application/useCases/beers/create-beer';
+import { DeleteBeer } from 'src/application/useCases/beers/delete-beer';
+import { UpdateBeer } from 'src/application/useCases/beers/update-beer';
+import { ListAllBeer } from 'src/application/useCases/beers/list-all-beer';
+import { ListByIdBeer } from 'src/application/useCases/beers/list-by-id-beer';
+import { ListSuitableStyleBeer } from 'src/application/useCases/beers/list-suitable-style-beer';
 import { ListSuitableStyleBodyDTO } from '../dtos/list-suitable-style-beer';
+import { BeerViewModels } from '../view-models/beers-view-models';
 
 @Controller('beers')
 export class BeersController {
