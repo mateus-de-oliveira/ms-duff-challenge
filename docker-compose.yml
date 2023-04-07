@@ -32,7 +32,7 @@ services:
         # networks:
         #     - my-network
         ports:
-        - '5432:5432'
+        - '5454:5432'
 
 # networks:
 #   my-network:
